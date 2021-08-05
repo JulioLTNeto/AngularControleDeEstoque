@@ -58,7 +58,7 @@ async function main() {
         //  }) // Create DB connection
 
         RedisStore = connectRedis(session) // Connext to redis using express session
-        redis = new Redis({host:"redis"})
+        redis = new Redis({host:process.env.REDIS_URL})
     }
     
     const app = express() // Initialize express
