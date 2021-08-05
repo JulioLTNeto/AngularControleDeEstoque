@@ -31,7 +31,8 @@ async function main() {
     // Initilize redis
     const RedisStore = connectRedis(session) // Connext to redis using express session
     //const redisCLient = redis.createClient()
-    const redis = new Redis({host:"redis"})
+    //const redis = new Redis({host:"redis"})
+    const redis = new Redis({host:"redis://:p51f0cc9c1efa83de4daaea0c9cbdf98850420725626184eb90e64ce06837d68e@ec2-44-196-75-206.compute-1.amazonaws.com:18809"})
     //const redis = new Redis()
 
     app.use(cors({
