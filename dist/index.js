@@ -32,38 +32,15 @@ const payementResolver_1 = require("./resolvers/payementResolver");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         let redis, RedisStore;
-        if (process.env.NODE_ENV === "test") {
+        if (process.env.NODE_ENV === "dev") {
             yield typeorm_1.createConnection();
             RedisStore = connect_redis_1.default(express_session_1.default);
             redis = new ioredis_1.default();
         }
         else {
-            yield typeorm_1.createConnection({
-                "type": "mysql",
-                "host": process.env.CLEARDB_DATABASE_URL,
-                "port": 3306,
-                "username": process.env.MYSQL_USER,
-                "password": process.env.MYSQL_PASSWORD,
-                "database": "rapidinho_db_2",
-                "synchronize": true,
-                "logging": false,
-                "entities": [
-                    "dist/entity/**/*.js"
-                ],
-                "migrations": [
-                    "dist/migration/**/*.js"
-                ],
-                "subscribers": [
-                    "dist/subscriber/**/*.js"
-                ],
-                "cli": {
-                    "entitiesDir": "src/entity",
-                    "migrationsDir": "src/migration",
-                    "subscribersDir": "src/subscriber"
-                }
-            });
             RedisStore = connect_redis_1.default(express_session_1.default);
-            redis = new ioredis_1.default({ host: "redis" });
+            redis = new ioredis_1.default({ host: process.env.REDIS_URL,
+                port: 20400, });
         }
         const app = express_1.default();
         app.use(cors_1.default({

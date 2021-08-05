@@ -25,7 +25,7 @@ async function main() {
 
     let redis: any, RedisStore: any;
 
-    if (process.env.NODE_ENV === "test"){
+    if (process.env.NODE_ENV === "dev"){
         await createConnection()
 
         RedisStore = connectRedis(session)
