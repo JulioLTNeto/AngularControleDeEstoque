@@ -59,8 +59,7 @@ async function main() {
 
         RedisStore = connectRedis(session) // Connext to redis using express session
         redis = new Redis(
-            {host:process.env.REDIS_URL,
-            port: 20400,}
+            {host:process.env.REDIS_URL}
             )
     }
     
