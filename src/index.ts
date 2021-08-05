@@ -115,7 +115,7 @@ async function main() {
 
     //app.use(cors)
 
-    app.get('/', (_, res) => {res.send('Hello World')})
+    app.get('/', (_, res) => {res.send('Hello World ${process.env.REDIS_URL}')})
 
     app.listen(process.env.PORT || 3333, () => {console.log('server started on port 3333')})
 
