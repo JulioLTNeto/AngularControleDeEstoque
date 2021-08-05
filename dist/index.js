@@ -31,10 +31,41 @@ const runResolver_1 = require("./resolvers/runResolver");
 const payementResolver_1 = require("./resolvers/payementResolver");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield typeorm_1.createConnection();
+        let redis, RedisStore;
+        if (process.env.NODE_ENV === "test") {
+            yield typeorm_1.createConnection();
+            RedisStore = connect_redis_1.default(express_session_1.default);
+            redis = new ioredis_1.default();
+        }
+        else {
+            yield typeorm_1.createConnection({
+                "type": "mysql",
+                "host": process.env.CLEARDB_DATABASE_URL,
+                "port": 3306,
+                "username": process.env.MYSQL_USER,
+                "password": process.env.MYSQL_PASSWORD,
+                "database": "rapidinho_db_2",
+                "synchronize": true,
+                "logging": false,
+                "entities": [
+                    "dist/entity/**/*.js"
+                ],
+                "migrations": [
+                    "dist/migration/**/*.js"
+                ],
+                "subscribers": [
+                    "dist/subscriber/**/*.js"
+                ],
+                "cli": {
+                    "entitiesDir": "src/entity",
+                    "migrationsDir": "src/migration",
+                    "subscribersDir": "src/subscriber"
+                }
+            });
+            RedisStore = connect_redis_1.default(express_session_1.default);
+            redis = new ioredis_1.default({ host: "redis" });
+        }
         const app = express_1.default();
-        const RedisStore = connect_redis_1.default(express_session_1.default);
-        const redis = new ioredis_1.default();
         app.use(cors_1.default({
             origin: 'http://localhost:3000',
             credentials: true
@@ -78,7 +109,7 @@ function main() {
             cors: false
         });
         app.get('/', (_, res) => { res.send('Hello World'); });
-        app.listen(3333, () => { console.log('server started on port 3333'); });
+        app.listen(process.env.PORT || 3333, () => { console.log('server started on port 3333'); });
     });
 }
 main();

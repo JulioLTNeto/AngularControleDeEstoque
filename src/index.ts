@@ -22,18 +22,46 @@ import {PaymentResolver} from "./resolvers/payementResolver";
 
 
 async function main() {
-    //sendEmail('fake@fake.com', 'hihihiihihii')
-    //const dbConnection = await createConnection()
-    //await seedDb(dbConnection).catch( err => console.log(err))
-    await createConnection() // Create DB connection
-    const app = express() // Initialize express
 
-    // Initilize redis
-    const RedisStore = connectRedis(session) // Connext to redis using express session
-    //const redisCLient = redis.createClient()
-    //const redis = new Redis({host:"redis"})
-    const redis = new Redis({host:"redis://:p51f0cc9c1efa83de4daaea0c9cbdf98850420725626184eb90e64ce06837d68e@ec2-44-196-75-206.compute-1.amazonaws.com:18809"})
-    //const redis = new Redis()
+    let redis: any, RedisStore: any;
+
+    if (process.env.NODE_ENV === "test"){
+        await createConnection()
+
+        RedisStore = connectRedis(session)
+        redis = new Redis()
+    }else {
+
+        await createConnection({
+            "type": "mysql",
+            "host": process.env.CLEARDB_DATABASE_URL,
+            "port": 3306,
+            "username": process.env.MYSQL_USER,
+            "password": process.env.MYSQL_PASSWORD,
+            "database": "rapidinho_db_2",
+            "synchronize": true,
+            "logging": false,
+            "entities": [
+               "dist/entity/**/*.js"
+            ],
+            "migrations": [
+               "dist/migration/**/*.js"
+            ],
+            "subscribers": [
+               "dist/subscriber/**/*.js"
+            ],
+            "cli": {
+               "entitiesDir": "src/entity",
+               "migrationsDir": "src/migration",
+               "subscribersDir": "src/subscriber"
+            }
+         }) // Create DB connection
+
+        RedisStore = connectRedis(session) // Connext to redis using express session
+        redis = new Redis({host:"redis"})
+    }
+    
+    const app = express() // Initialize express
 
     app.use(cors({
         origin: 'http://localhost:3000',
