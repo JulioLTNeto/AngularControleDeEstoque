@@ -34,7 +34,7 @@ async function main() {
 
         await createConnection({
             "type": "mysql",
-            "host": process.env.CLEARDB_DATABASE_URL,
+            "host": "mysql://b5fecc6a0f4f44:5573d1f1@us-cdbr-east-04.cleardb.com/heroku_b9cbe82646f5c6a?reconnect=true",
             "port": 3306,
             "username": process.env.MYSQL_USER,
             "password": process.env.MYSQL_PASSWORD,
