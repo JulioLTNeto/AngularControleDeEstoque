@@ -23,13 +23,10 @@ services:
         - ${REDIS_PORT}:6379
     restart: always
     
-
   api:
     env_file: .env
     build: 
       context: .
-    depends_on: 
-      - mysql_db
     volumes: 
       - ./.env:/mnt/api/.env
     expose: 

@@ -31,8 +31,8 @@ async function main() {
     // Initilize redis
     const RedisStore = connectRedis(session) // Connext to redis using express session
     //const redisCLient = redis.createClient()
-    //const redis = new Redis({host:"redis"})
-    const redis = new Redis()
+    const redis = new Redis({host:"redis"})
+    //const redis = new Redis()
 
     app.use(cors({
         origin: 'http://localhost:3000',
@@ -85,7 +85,7 @@ async function main() {
 
     app.get('/', (_, res) => {res.send('Hello World')})
 
-    app.listen(3333, () => {console.log('server started on port 3333')})
+    app.listen(process.env.PORT || 3333, () => {console.log('server started on port 3333')})
 
 }
 main()

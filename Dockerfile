@@ -4,6 +4,12 @@ COPY . /mnt/api/
 
 WORKDIR /mnt/api/
 
-RUN npm init -y && npm install && npm build
+RUN yarn init -y && yarn install && yarn build
+
+# RUN npm init -y 
+
+# RUN npm config set registry http://registry.npmjs.org/  
+
+# RUN npm install && npm build
 
 CMD node dist/index.js
