@@ -38,7 +38,7 @@ async function main() {
             "port": 3306,
             "username": process.env.MYSQL_USER,
             "password": process.env.MYSQL_PASSWORD,
-            "database": "rapidinho_db_2",
+            "database": process.env.DB_NAME,
             "synchronize": true,
             "logging": false,
             "entities": [
