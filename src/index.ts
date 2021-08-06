@@ -32,13 +32,20 @@ async function main() {
         redis = new Redis()
     }else {
 
+        console.log(process.env.DB_HOST)
+        console.log(process.env.DB_USER)
+        console.log(process.env.DB_PASSWORD)
+        console.log(process.env.DB_NAME)
+
+        // "host": process.env.DB_HOST,
+        //     "port": 3306,
+        //     "username": process.env.DB_USER,
+        //     "password": process.env.DB_PASSWORD,
+        //     "database": process.env.DB_NAME,
+
         await createConnection({
             "type": "mysql",
-            "host": process.env.DB_HOST,
-            "port": 3306,
-            "username": process.env.DB_USER,
-            "password": process.env.DB_PASSWORD,
-            "database": process.env.DB_NAME,
+            "url": process.env.CLEARDB_DATABASE_URL,
             "synchronize": true,
             "logging": false,
             "entities": [
