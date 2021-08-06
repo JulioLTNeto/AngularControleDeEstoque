@@ -32,30 +32,30 @@ async function main() {
         redis = new Redis()
     }else {
 
-        // await createConnection({
-        //     "type": "mysql",
-        //     "host": "mysql://b5fecc6a0f4f44:5573d1f1@us-cdbr-east-04.cleardb.com/heroku_b9cbe82646f5c6a?reconnect=true",
-        //     "port": 3306,
-        //     "username": process.env.MYSQL_USER,
-        //     "password": process.env.MYSQL_PASSWORD,
-        //     "database": process.env.DB_NAME,
-        //     "synchronize": true,
-        //     "logging": false,
-        //     "entities": [
-        //        "dist/entity/**/*.js"
-        //     ],
-        //     "migrations": [
-        //        "dist/migration/**/*.js"
-        //     ],
-        //     "subscribers": [
-        //        "dist/subscriber/**/*.js"
-        //     ],
-        //     "cli": {
-        //        "entitiesDir": "src/entity",
-        //        "migrationsDir": "src/migration",
-        //        "subscribersDir": "src/subscriber"
-        //     }
-        //  }) // Create DB connection
+        await createConnection({
+            "type": "mysql",
+            "host": process.env.DB_HOST,
+            "port": 3306,
+            "username": process.env.DB_USER,
+            "password": process.env.DB_PASSWORD,
+            "database": process.env.DB_NAME,
+            "synchronize": true,
+            "logging": false,
+            "entities": [
+               "dist/entity/**/*.js"
+            ],
+            "migrations": [
+               "dist/migration/**/*.js"
+            ],
+            "subscribers": [
+               "dist/subscriber/**/*.js"
+            ],
+            "cli": {
+               "entitiesDir": "src/entity",
+               "migrationsDir": "src/migration",
+               "subscribersDir": "src/subscriber"
+            }
+         }) // Create DB connection
 
         RedisStore = connectRedis(session) // Connext to redis using express session
         redis = new Redis(process.env.REDIS_URL)
