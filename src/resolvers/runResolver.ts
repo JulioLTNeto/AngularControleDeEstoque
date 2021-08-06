@@ -1,3 +1,4 @@
+import { isMotoTaxi } from "../middleware/isMotoTaxi";
 import { isClient } from "../middleware/isClient";
 import { Arg, Ctx, Query, Mutation, UseMiddleware } from "type-graphql";
 import { Run, RunPaymentStatus, RunStatus, RunType } from "../entity/Run";
@@ -14,6 +15,19 @@ export class RunResolver {
     @Ctx() _ctx: MyContext,
   ): Promise<Run[]>{
     return await Run.find()
+  }
+
+  @Query(() => [Run])
+  @UseMiddleware(isMotoTaxi)
+  async getAllRunsByMotoTaxi(
+    @Ctx() {req}: MyContext,
+  ): Promise<Run[]>{
+
+    const runMotoTaxi = await MotoTaxi.findOne({where:{id: req.session.userId}})
+    if (!runMotoTaxi) {
+      return []
+    }
+    return await Run.find({where:{motoTaxi: runMotoTaxi}})
   }
 
   @Mutation(() => RunResponse)
@@ -152,6 +166,50 @@ export class RunResolver {
       run.runStatus = RunStatus.CLOSED
       run.save()
     }
+     return{
+       run: run
+     }
+  }
+
+  @Mutation(() => RunResponse)
+  @UseMiddleware(isMotoTaxi)
+  async acceptRun(
+    @Ctx() {req}: MyContext,
+    @Arg('runId', () => String) runId: String
+  ){
+
+    let run = await Run.findOne({where:{id: runId, runStatus: RunStatus.PENDING}})
+    if (!run) {
+      run = await Run.findOne({where:{id: runId, runStatus: RunStatus.OPEN}})
+    }
+
+    if (!run) {
+      return {
+        errors: [{
+          message:"This run does not exist"
+        }]
+      }
+    }
+
+    const runMotoTaxi = await MotoTaxi.findOne({where:{id:req.session.userId}})
+
+    if (!runMotoTaxi){
+      return {
+        errors: [{
+          message:"The Moto Taxi associated with this run does not exist"
+        }]
+      }
+    }
+    console.log(runMotoTaxi)
+
+    run.motoTaxi = runMotoTaxi
+
+    if (run.runStatus === RunStatus.PENDING) {
+      console.log('here')
+      run.runStatus = RunStatus.OPEN
+      run.save()
+    }
+   
      return{
        run: run
      }

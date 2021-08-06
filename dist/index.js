@@ -38,9 +38,32 @@ function main() {
             redis = new ioredis_1.default();
         }
         else {
+            console.log(process.env.DB_HOST);
+            console.log(process.env.DB_USER);
+            console.log(process.env.DB_PASSWORD);
+            console.log(process.env.DB_NAME);
+            yield typeorm_1.createConnection({
+                "type": "mysql",
+                "url": process.env.CLEARDB_DATABASE_URL,
+                "synchronize": true,
+                "logging": false,
+                "entities": [
+                    "dist/entity/**/*.js"
+                ],
+                "migrations": [
+                    "dist/migration/**/*.js"
+                ],
+                "subscribers": [
+                    "dist/subscriber/**/*.js"
+                ],
+                "cli": {
+                    "entitiesDir": "src/entity",
+                    "migrationsDir": "src/migration",
+                    "subscribersDir": "src/subscriber"
+                }
+            });
             RedisStore = connect_redis_1.default(express_session_1.default);
-            redis = new ioredis_1.default({ host: process.env.REDIS_URL,
-                port: 20400, });
+            redis = new ioredis_1.default(process.env.REDIS_URL);
         }
         const app = express_1.default();
         app.use(cors_1.default({
@@ -85,7 +108,7 @@ function main() {
             app,
             cors: false
         });
-        app.get('/', (_, res) => { res.send('Hello World'); });
+        app.get('/', (_, res) => { res.send(process.env.REDIS_URL); });
         app.listen(process.env.PORT || 3333, () => { console.log('server started on port 3333'); });
     });
 }

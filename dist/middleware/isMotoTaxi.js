@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isClient = void 0;
+exports.isMotoTaxi = void 0;
 const MotoTaxi_1 = require("../entity/MotoTaxi");
-const isClient = ({ context }, next) => {
+const isMotoTaxi = ({ context }, next) => {
     if (!context.req.session.userId) {
         throw new Error("Not authenticated");
     }
@@ -11,5 +11,5 @@ const isClient = ({ context }, next) => {
     }
     return next();
 };
-exports.isClient = isClient;
+exports.isMotoTaxi = isMotoTaxi;
 //# sourceMappingURL=isMotoTaxi.js.map

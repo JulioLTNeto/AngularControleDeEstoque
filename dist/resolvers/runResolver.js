@@ -22,6 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RunResolver = void 0;
+const isMotoTaxi_1 = require("../middleware/isMotoTaxi");
 const isClient_1 = require("../middleware/isClient");
 const type_graphql_1 = require("type-graphql");
 const Run_1 = require("../entity/Run");
@@ -33,6 +34,15 @@ class RunResolver {
     getAllRuns(_ctx) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield Run_1.Run.find();
+        });
+    }
+    getAllRunsByMotoTaxi({ req }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const runMotoTaxi = yield MotoTaxi_1.MotoTaxi.findOne({ where: { id: req.session.userId } });
+            if (!runMotoTaxi) {
+                return [];
+            }
+            return yield Run_1.Run.find({ where: { motoTaxi: runMotoTaxi } });
         });
     }
     createRun({ req }, motoTaxiId, runType) {
@@ -147,6 +157,39 @@ class RunResolver {
             };
         });
     }
+    acceptRun({ req }, runId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let run = yield Run_1.Run.findOne({ where: { id: runId, runStatus: Run_1.RunStatus.PENDING } });
+            if (!run) {
+                run = yield Run_1.Run.findOne({ where: { id: runId, runStatus: Run_1.RunStatus.OPEN } });
+            }
+            if (!run) {
+                return {
+                    errors: [{
+                            message: "This run does not exist"
+                        }]
+                };
+            }
+            const runMotoTaxi = yield MotoTaxi_1.MotoTaxi.findOne({ where: { id: req.session.userId } });
+            if (!runMotoTaxi) {
+                return {
+                    errors: [{
+                            message: "The Moto Taxi associated with this run does not exist"
+                        }]
+                };
+            }
+            console.log(runMotoTaxi);
+            run.motoTaxi = runMotoTaxi;
+            if (run.runStatus === Run_1.RunStatus.PENDING) {
+                console.log('here');
+                run.runStatus = Run_1.RunStatus.OPEN;
+                run.save();
+            }
+            return {
+                run: run
+            };
+        });
+    }
 }
 __decorate([
     type_graphql_1.Query(() => [Run_1.Run]),
@@ -155,6 +198,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], RunResolver.prototype, "getAllRuns", null);
+__decorate([
+    type_graphql_1.Query(() => [Run_1.Run]),
+    type_graphql_1.UseMiddleware(isMotoTaxi_1.isMotoTaxi),
+    __param(0, type_graphql_1.Ctx()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], RunResolver.prototype, "getAllRunsByMotoTaxi", null);
 __decorate([
     type_graphql_1.Mutation(() => runResponse_1.RunResponse),
     type_graphql_1.UseMiddleware(isClient_1.isClient),
@@ -174,5 +225,14 @@ __decorate([
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], RunResolver.prototype, "updateRunStatus", null);
+__decorate([
+    type_graphql_1.Mutation(() => runResponse_1.RunResponse),
+    type_graphql_1.UseMiddleware(isMotoTaxi_1.isMotoTaxi),
+    __param(0, type_graphql_1.Ctx()),
+    __param(1, type_graphql_1.Arg('runId', () => String)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], RunResolver.prototype, "acceptRun", null);
 exports.RunResolver = RunResolver;
 //# sourceMappingURL=runResolver.js.map

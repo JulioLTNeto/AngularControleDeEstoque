@@ -2,7 +2,7 @@ import { MotoTaxi } from "../entity/MotoTaxi";
 import { MyContext } from "src/types";
 import { MiddlewareFn } from "type-graphql";
 
-export const isClient: MiddlewareFn<MyContext> = ({context}, next) => {
+export const isMotoTaxi: MiddlewareFn<MyContext> = ({context}, next) => {
   if (!context.req.session.userId) {
     throw new Error("Not authenticated")
   }
