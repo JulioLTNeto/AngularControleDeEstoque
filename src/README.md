@@ -6,9 +6,14 @@ O banco de dados é feito com MySQL
 A ideia do projeto é um sistema simples de controle de estoque, com tabelas para os produtos, fornecedores, categorias, vendas, usuarios e lucros.
 Cada tabela terá uma função que será explicada abaixo.</p><br />
 
-  <p>• produtos: Armazenar os dados dos produtos, salvar a quantidade de tal produto para análise e manipulação futura. a tabela produto se relaciona com a tabela categorias e fornecedores. Só o administrador pode adcionar um novo produto.(Ainda não implementado)</p><br />
+<ul>
+<li>produtos: Armazenar os dados dos produtos, salvar a quantidade de tal produto para análise e manipulação futura. a tabela produto se relaciona com a tabela categorias e fornecedores. Só o administrador pode adcionar um novo produto.(Ainda não implementado)</li>
+<li>fornecedores: Armazenar os dados dos fornecedores, como locarização, nome e cnpj. Apenas o administrador pode adicionar um novo fornecedor(Ainda não implementado)</li>
+</ul>
+
+  <p>• </p><br />
   
-  <p>• fornecedores: Armazenar os dados dos fornecedores, como locarização, nome e cnpj. Apenas o administrador pode adicionar um novo fornecedor(Ainda não implementado)</p><br />
+  <p>• </p><br />
   
   <p>• categorias: Armazena as cateegorias adcionadas. O administrador do sistema pode adicionar uma nova categoria.(Ainda não implementado)</p><br />
   
