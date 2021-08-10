@@ -4,7 +4,7 @@ abra o prompt de comando com o diretório da pasta e digite "npm start", ele ir�
 O banco de dados é feito com MySQL
 
 A ideia do projeto é um sistema simples de controle de estoque, com tabelas para os produtos, fornecedores, categorias, vendas, usuarios e lucros.
-Cada tabela terá uma função que será explicada abaixo.</p>z
+Cada tabela terá uma função que será explicada abaixo.</p>
 
   <p>• produtos: Armazenar os dados dos produtos, salvar a quantidade de tal produto para análise e manipulação futura. a tabela produto se relaciona com a tabela categorias e fornecedores. Só o administrador pode adcionar um novo produto.(Ainda não implementado)</p>
   
@@ -16,5 +16,5 @@ Cada tabela terá uma função que será explicada abaixo.</p>z
   
   <p>• lucros: Armazena os valores do lucro em determinada faixa de tempo, o processo é feito automaticamente.(Ainda não implementado)</p>
   
-  usuarios: Armazena os usuarios, cada usuario tem um nível de privilégio dentro do sistema.(Ainda não implementado)(Só o administrador pode adcionar um novo usuário, alem de removelos)</p>
+  <p style="text-indent: 30px">• usuarios: Armazena os usuarios, cada usuario tem um nível de privilégio dentro do sistema.(Ainda não implementado)(Só o administrador pode adcionar um novo usuário, alem de removelos)</p>
   
