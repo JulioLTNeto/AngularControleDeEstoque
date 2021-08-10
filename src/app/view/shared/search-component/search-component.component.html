@@ -55,7 +55,9 @@
             </section>
         </form>
     </div>
+
     <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    
     <h3 *ngIf="!receivedMissing" class="messageReceivedData && !loading">Nenhum Produto Encontrado</h3>
     <button mat-button (click)="clickButtonReset()" *ngIf="!loading">Resetar Tabela</button>
     <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="receivedMissing && !loading">

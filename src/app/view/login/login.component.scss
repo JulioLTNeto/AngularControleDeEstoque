@@ -1,25 +1,31 @@
 .bg{
-    background: rgba($color: #1c1c44, $alpha: 1.0);
+    background: radial-gradient(rgba($color: #158296, $alpha: 1.0), rgba($color: #0a5a68, $alpha: 1.0));
     width: 100%;
     height: 100%;
 }
 
 .example-form {
     min-width: 150px;
-    max-width: 500px;
+    max-width: 400px;
     width: 100%;
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 30px;
     padding-right: 30px;
-    background: rgba($color: #000000, $alpha: 0.3);
+
+    border-left: 2px solid rgba($color: #011924, $alpha: 1.0);
+    border-right: 2px solid rgba($color: #011924, $alpha: 1.0);
+    border-top: 2px solid rgba($color: #011924, $alpha: 1.0);
+    border-bottom: 2px solid rgba($color: #011924, $alpha: 1.0);
+
+    background: rgba($color: #000000, $alpha: 0.4);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     border-radius: 5px;
     box-shadow: 0px 0px 5px #000000;
-    box-shadow: inset 0px 0px 5px #000000;
+    box-shadow: 0px 0px 5px #000000;
 }
   
 .example-full-width {
@@ -30,10 +36,14 @@
     color: rgba($color: #e2d9d9, $alpha: 1.0);
 }
 
+.input{
+    background: rgba($color: #c4c3c3, $alpha: 1.0);
+}
+
 h1{
     width: 100%;
     height: auto;
-    padding-top: 10px;
+    padding-top: 0px;
     padding-bottom: 10px;
     border-bottom: rgba($color: #ffffff, $alpha: 1.0) groove 2px;
     padding-bottom: 20px;
@@ -50,4 +60,5 @@ h1{
 
 button{
     width: 100%;
+    margin-top: 10px;
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UsersComponents } from 'src/app/model/user/users.components';
-import { Location } from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
 import { UserServices } from 'src/app/services/user/user.services';
+import { IncorrectLoginDialogComponent } from '../shared/dialogs/incorrect-login-dialog/incorrect-login-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,12 @@ export class LoginComponent implements OnInit{
   fillEmail: boolean = true;
   fillPassword: boolean = true;
 
+  loading:boolean = false;
+
   formLogin!: FormGroup;
   userReturn!: UsersComponents[];
 
-  constructor(public UserServices : UserServices) { }
+  constructor(public UserServices : UserServices, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.createForm(new UsersComponents());
@@ -40,13 +43,18 @@ export class LoginComponent implements OnInit{
       let usuario = new UsersComponents;
       usuario.login = this.formLogin.value.email;
       usuario.senha = this.formLogin.value.password;
-      
+      this.loading = true;
+
       this.UserServices.createLogin(usuario).subscribe((data: UsersComponents[])=>{
+        this.loading = false;
         this.userReturn = data;
+
         if(this.userReturn.length <= 0){
-          alert("Login Incorreto");
+          
+          this.dialog.open(IncorrectLoginDialogComponent);
+          this.onReset();
+
         }else{
-          alert("Iniciando Sessão");
           sessionStorage.setItem('login', this.formLogin.value.email);
           sessionStorage.setItem('password', this.formLogin.value.password);
           sessionStorage.setItem('nameUser', data[0].nome);
@@ -55,6 +63,14 @@ export class LoginComponent implements OnInit{
       });
       
     }
+  }
+
+  onReset(){
+    let login = new UsersComponents();
+    this.formLogin = new FormGroup({
+      email: new FormControl(login.login),
+      password: new FormControl(login.senha)
+    })
   }
 
 }

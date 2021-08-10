@@ -16,6 +16,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { LoginComponent } from './view/login/login.component';
 import { PanelInitialComponent } from './view/panel-initial/panel-initial.component';
 import { TableProductCategoryComponent } from './view/shared/table-product-category/table-product-category.component';
 import { TableProductProviderComponent } from './view/shared/table-product-provider/table-product-provider.component';
+import { IncorrectLoginDialogComponent } from './view/shared/dialogs/incorrect-login-dialog/incorrect-login-dialog.component';
 
 
 @NgModule({
@@ -43,7 +46,8 @@ import { TableProductProviderComponent } from './view/shared/table-product-provi
     LoginComponent,
     PanelInitialComponent,
     TableProductCategoryComponent,
-    TableProductProviderComponent
+    TableProductProviderComponent,
+    IncorrectLoginDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { TableProductProviderComponent } from './view/shared/table-product-provi
     MatTabsModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
