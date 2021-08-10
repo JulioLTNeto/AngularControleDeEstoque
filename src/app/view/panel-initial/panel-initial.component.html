@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div [style.height.px]="sizeMenu" class="menu-left">
+    <mat-list>
+        <mat-list-item (click)="onHome()" class="{{background_item_1}}">Home</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="onProductMissing()" class="{{background_item_2}}">Produtos em Falta</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="onProductCategory()" class="{{background_item_3}}">Produtos por categorias</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="onProductProvider()" class="{{background_item_4}}">Fornecedores com Produtos em Falta</mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
+
+<div class="center" [style.width.px]="sizeCenter">
+    <div class="container">
+        <app-search-component *ngIf="vHome"></app-search-component>
+        <app-table-product-missing *ngIf="vProductMissing" ></app-table-product-missing>
+        <app-table-product-category *ngIf="vProductCategory"></app-table-product-category>
+        <app-table-product-provider *ngIf="vProductProvider"></app-table-product-provider>
+    </div>
+</div>
+
+<app-footer></app-footer>

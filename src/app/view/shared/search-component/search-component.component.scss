@@ -1,0 +1,44 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+    //margin-bottom: 20px;
+}
+
+.example-full-width{
+    width: 100%;
+    display: block;
+}
+
+//.bg{
+    //padding-top: 20px;
+//}
+
+section h3{
+    display: block;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    padding-top: 20px;
+}
+
+.selecionar{
+    padding-top: 0px;
+    margin-top: 0px;
+    width: 100%;
+    max-width: 800px;
+}
+
+mat-select{
+    width: 100%;
+    height: auto;
+}
+
+mat-option{
+    width: 100%;
+}
+
+.botaoSelect{
+    margin-left: 20px;
+}
+
+table {
+    width: 100%;
+  }

@@ -1,0 +1,19 @@
+<div class="b container_bar">
+  <div class="top_bar_left">
+    <button mat-icon-button class="example-icon noPaddingMarging" aria-label="Example icon-button with menu icon">
+      <mat-icon class="noPaddingMarging">menu</mat-icon>
+    </button>
+    <span class="noPaddingMarging">Menu</span>
+  </div>
+  
+  <div class="top_bar" [style.width.px]="sizeCenter">
+    <mat-toolbar class="centro">
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="user-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <span>{{nameUser}}</span>
+      </mat-toolbar>
+  </div>
+
+</div>

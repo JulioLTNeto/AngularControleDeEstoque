@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="bg">
+        <form class="search_form" [formGroup]="formSearch" method="POST" (ngSubmit)="onSubmit()" >
+            <mat-radio-group aria-label="Select an option" formControlName="quantidade" color="primary" (click)="onRadio()">
+
+                <mat-radio-button [value]="1" aria-checked="true" checked="true">Codigo de Barras</mat-radio-button>
+                <mat-radio-button [value]="2">Nome</mat-radio-button>
+                <mat-radio-button [value]="3">Fornecedor</mat-radio-button>
+                <mat-radio-button [value]="4">Categoria</mat-radio-button>
+                
+            </mat-radio-group>
+            <section *ngIf="forCode">
+                <h3 class="color">Codigo de Barras</h3>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label class="color">Codigo de barras</mat-label>
+                    <input type="text" matInput placeholder="Ex. 00000000000000" formControlName="codigo_de_barras" class="colorTexto">
+                </mat-form-field>
+            </section>
+
+            <section *ngIf="forName">
+                <h3 class="color">Nome do Produto</h3>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label class="color">Nome</mat-label>
+                    <input type="text" matInput placeholder="Ex. Abobora" formControlName="nome" class="colorTexto">
+                </mat-form-field>
+            </section>
+
+            <section  *ngIf="forProvider">
+                    <h3 class="color">Fornecedor</h3>
+                    <mat-form-field appearance="fill" class="selecionar">
+                        <mat-label>Escolha</mat-label>
+                        <mat-select formControlName="fornecedor_id">
+                            <mat-option *ngFor="let provider of providers" value="{{provider.id}}">{{provider.nome}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-mini-fab type="submit" class="botaoSelect container_bar" color="container_bar" aria-label="Example icon button with a plus one icon">
+                    <mat-icon>done</mat-icon>
+                </button>
+            </section>
+
+            <section *ngIf="forCategory">
+                
+                <h3 class="color">Categorias</h3>
+                    
+                    <mat-form-field class="selecionar" appearance="fill">
+                        <mat-label>Escolha</mat-label>
+                        <mat-select formControlName="categoria_id">
+                        <mat-option *ngFor="let categoria of categorys" value="{{categoria.id}}">{{categoria.nome}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <button class="botaoSelect container_bar" color="container_bar" mat-mini-fab type="submit" aria-label="Example icon button with a plus one icon">
+                    <mat-icon>done</mat-icon>
+                </button>
+            </section>
+        </form>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    <h3 *ngIf="!receivedMissing" class="messageReceivedData && !loading">Nenhum Produto Encontrado</h3>
+    <button mat-button (click)="clickButtonReset()" *ngIf="!loading">Resetar Tabela</button>
+    <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="receivedMissing && !loading">
+
+        <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codigo_de_barras">
+        <th mat-header-cell *matHeaderCellDef> Codigo De Barras </th>
+        <td mat-cell *matCellDef="let element"> {{element.codigo_de_barras}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="preco">
+        <th mat-header-cell *matHeaderCellDef> Preço </th>
+        <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantidade}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef> Categoria </th>
+            <td mat-cell *matCellDef="let element"> {{element.categoria_nome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fornecedor">
+            <th mat-header-cell *matHeaderCellDef> Fornecedor </th>
+            <td mat-cell *matCellDef="let element"> {{element.fornecedor_nome}} </td>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="primary">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button color="primary">
+                    <mat-icon>shopping_cart</mat-icon>
+                </button>
+            </td>
+            
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

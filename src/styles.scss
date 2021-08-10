@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container_bar{
+    background: #041b1f;
+    color: #ccc;
+    text-shadow: 0px 1px 1px #041b1f;
+}
+
+.user-icon mat-icon{
+    font-size: 35px;
+    text-indent: 0px;
+    padding-left: 0px;
+    text-align: center;
+    margin-left: 0px;
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    max-width: 1200px;
+    height: auto;
+}
+
+.messageReceivedData{
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+    text-align: center;
+}

@@ -1,0 +1,16 @@
+<div class="bg">
+    <form class="example-form" [formGroup]="formLogin" method="POST" (ngSubmit)="onSubmit()" >
+        <h1 color="primary" class="color">Faça Seu Login</h1>
+        <mat-label class="label color">Email</mat-label>
+        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label class="color">Email</mat-label>
+        <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email" required class="color">
+        </mat-form-field>
+        <mat-label class="label color">Senha</mat-label>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label class="color">Senha</mat-label>
+            <input type="password" matInput placeholder="Ex. AExile43" formControlName="password" class="color" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit color">Login</button>
+    </form>
+</div>

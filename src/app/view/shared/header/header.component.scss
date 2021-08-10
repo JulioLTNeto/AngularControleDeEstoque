@@ -1,0 +1,44 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+.centro{
+    background: none !important;
+    color: #ccc;
+}
+span{
+    text-indent: 10px;
+}
+
+.top_bar{
+    z-index: 999 !important;
+    display: inline-block;
+}
+
+.b{
+    width: 100%;
+    height: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: -5px;
+}
+
+
+.top_bar_left{
+    padding-top: 20px;
+    padding-bottom: 15px;
+    height: 100%;
+    width: 100%;
+    transform: translateY(0px);
+    max-width: 250px;
+    background-color:  #000c0ea4;
+    display: inline-block;
+}
+
+.top_bar_left span{
+    font-size: 18px;
+    padding-top: 30px !important;
+}
+
+.top_bar_left mat-icon{
+    font-size: 25px;
+}
