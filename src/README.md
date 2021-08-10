@@ -7,19 +7,11 @@ A ideia do projeto é um sistema simples de controle de estoque, com tabelas par
 Cada tabela terá uma função que será explicada abaixo.</p><br />
 
 <ul>
-<li>produtos: Armazenar os dados dos produtos, salvar a quantidade de tal produto para análise e manipulação futura. a tabela produto se relaciona com a tabela categorias e fornecedores. Só o administrador pode adcionar um novo produto.(Ainda não implementado)</li>
-<li>fornecedores: Armazenar os dados dos fornecedores, como locarização, nome e cnpj. Apenas o administrador pode adicionar um novo fornecedor(Ainda não implementado)</li>
+  <li>produtos: Armazenar os dados dos produtos, salvar a quantidade de tal produto para análise e manipulação futura. a tabela produto se relaciona com a tabela categorias e fornecedores. Só o administrador pode adcionar um novo produto.(Ainda não implementado)</li>
+  <li>fornecedores: Armazenar os dados dos fornecedores, como locarização, nome e cnpj. Apenas o administrador pode adicionar um novo fornecedor(Ainda não implementado)</li>
+  <li>categorias: Armazena as cateegorias adcionadas. O administrador do sistema pode adicionar uma nova categoria.(Ainda não implementado)</li>
+  <li>vendas: Armazena os valores da compra, produto e usuário que realizou o procedimento, alem do preco cobrado do produto. Qualquer usuário pode realizar a operação.(Ainda não implementado)</li>
+  <li>lucros: Armazena os valores do lucro em determinada faixa de tempo, o processo é feito automaticamente.(Ainda não implementado)</li>
+  <li>usuarios: Armazena os usuarios, cada usuario tem um nível de privilégio dentro do sistema.(Ainda não implementado)(Só o administrador pode adcionar um novo usuário, alem de removelos)</li>
 </ul>
-
-  <p>• </p><br />
-  
-  <p>• </p><br />
-  
-  <p>• categorias: Armazena as cateegorias adcionadas. O administrador do sistema pode adicionar uma nova categoria.(Ainda não implementado)</p><br />
-  
-  <p>• vendas: Armazena os valores da compra, produto e usuário que realizou o procedimento, alem do preco cobrado do produto. Qualquer usuário pode realizar a operação.(Ainda não implementado)</p><br />
-  
-  <p>• lucros: Armazena os valores do lucro em determinada faixa de tempo, o processo é feito automaticamente.(Ainda não implementado)</p><br />
-  
-  <p style="text-indent: 30px">• usuarios: Armazena os usuarios, cada usuario tem um nível de privilégio dentro do sistema.(Ainda não implementado)(Só o administrador pode adcionar um novo usuário, alem de removelos)</p><br />
   
