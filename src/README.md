@@ -1,7 +1,7 @@
-Projeto feito utilizando o Angular, incluso nele está uma API, para iniciar vá para src/api<br />
-abra o prompt de comando com o diretório da pasta e digite "npm start", ele irá automaticamente levantar a api<br />
+Projeto feito utilizando o Angular, incluso nele está uma API, para iniciar vá para src/api
+abra o prompt de comando com o diretório da pasta e digite "npm start", ele irá automaticamente levantar a api
 
-O banco de dados é feito com MySQL<br />
+O banco de dados é feito com MySQL
 
 A ideia do projeto é um sistema simples de controle de estoque, com tabelas para os produtos, fornecedores, categorias, vendas, usuarios e lucros.
 Cada tabela terá uma função que será explicada abaixo.</p><br />
