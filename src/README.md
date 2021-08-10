@@ -17,5 +17,8 @@ Cada tabela terá uma função que será explicada abaixo.</p>
 </ul>
   
 <h3>Telas do sistema</h3>
-<h4>Tela de login<b>(Em Progresso)</b></h4>
-<img src="https://ibb.co/pR4ZCx6"/>
+<h4>Tela de Login<b>(Em Progresso)</b></h4>
+<a href="https://ibb.co/pR4ZCx6"><img src="https://i.ibb.co/LJ9648D/tela-Login.png" alt="tela-Login" border="0"></a>
+<h4>Tela Inicial</b></h4>
+<a href="https://ibb.co/VShgJjp"><img src="https://i.ibb.co/d23PjWJ/tela-Inicialp1.png" alt="tela-Inicialp1" border="0"></a>
+<a href="https://ibb.co/GczMc0L"><img src="https://i.ibb.co/4PhSP7G/tela-Inicialp2.png" alt="tela-Inicialp2" border="0"></a>
